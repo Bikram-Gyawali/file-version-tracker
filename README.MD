@@ -15,10 +15,16 @@
 
 ### server 
 - ` 1 cd filetracker-sever`
-  `2 docker compose build`
-  `3 docker compose up`
+- `2 docker compose build`
+- `3 docker compose up`
 
 ### client
 - ` 1 cd filetracker-client`
-  `2 docker compose build`
-  `3 docker compose up`
+- `2 docker compose build`
+- `3 docker compose up`
+
+### To be implemented : 
+- proper error handling in frontend
+- navigation and restriction in forntend
+- single docker compose
+- security improvements
