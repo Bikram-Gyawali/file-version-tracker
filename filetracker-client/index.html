@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <audio id="notificationSound" src="https://www.youtube.com/watch?v=z6FWuHDfbTI" preload="auto"></audio>
+  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-messaging.js"></script>
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="File Tracker" />
+  <meta property="og:title" content="File Tracker | An applicant tracking management system " />
+  <meta property="og:description"
+    content="File Tracker." />
+  <!-- <meta
+      property="og:image"
+      content="https://user-images.githubusercontent.com/20709155/245545356-b14ffb26-8964-4332-ab39-cd2f5d96287d.png"
+    /> -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="File Tracker" />
+  <meta property="twitter:title" content="File Tracker" />
+  <meta property="twitter:description"
+    content="File Tracker." />
+  <meta property="twitter:image"
+    content="https://user-images.githubusercontent.com/20709155/245545356-b14ffb26-8964-4332-ab39-cd2f5d96287d.png" />
+
+  <meta name="title" content="File Tracker (ATS - System)" />
+  <meta name="description"
+    content="File Tracker" />
+  <meta name="keywords"
+    content="File Tracker Bikram Gyawali, Diwakar Basnet , File Tracker, Web based application" />
+  <meta name="robots" content="index, follow" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="language" content="English" />
+  <meta name="revisit-after" content="10 days" />
+
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    .toast {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #333;
+      color: #fff;
+      height: 50px;
+      padding: 16px;
+      border-radius: 4px;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .toast.show {
+      opacity: 0.6;
+    }
+  </style>
+  <title>File Tracker</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+  <script>
+
+    // import {firebaseConfig} from './src/App/firebase.js'; 
+    // console.log("firebaseConfig", firebaseConfig)
+    const firebaseConfig = {
+      apiKey: "AIzaSyCBWYMKVKJAJPnUIHCwh613d0TgY-pL6jM",
+
+      authDomain: "ntflixchor.firebaseapp.com",
+
+      databaseURL: "https://ntflixchor.firebaseio.com",
+
+      projectId: "ntflixchor",
+
+      storageBucket: "ntflixchor.appspot.com",
+
+      messagingSenderId: "485828938615",
+
+      appId: "1:485828938615:web:a1467fbda9ede59ffcef72",
+
+      measurementId: "G-MQ85SHNDC9",
+    };
+
+    firebase.initializeApp(firebaseConfig);
+
+    // Get messaging object
+    const messaging = firebase.messaging();
+
+    // Add message listener
+    messaging.onMessage((payload) => {
+      console.log('Message received:', payload);
+      const data = JSON.parse(payload.data.data);
+      showMessage(payload);
+
+      if (data?.role) {
+        localStorage.setItem("role", data?.role);
+        // refresh the page
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+      }
+    });
+
+    function showMessage(payload) {
+      const toastMessage = `${payload.notification.title}: ${payload.notification.body}`;
+
+      const toast = document.createElement("div");
+      toast.textContent = toastMessage;
+      toast.classList.add("toast");
+
+      document.body.appendChild(toast);
+
+      setTimeout(() => {
+        toast.classList.add("show");
+      }, 100);
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => {
+          document.body.removeChild(toast);
+        }, 300);
+      }, 3000);
+    }
+
+
+    // also display notification in browser level when user is in other page
+    // messaging.onMessage((payload) => {
+    //   console.log('Message received:', payload);
+    //   const data = JSON.parse(payload.data.data);
+      
+    //   // get window notification
+
+    //   const toastMessage = `${payload.notification.title}: ${payload.notification.body}`;
+
+    //   const toast = window.document.createElement("div");
+    //   toast.textContent = toastMessage;
+    //   toast.classList.add("toast");
+
+    //   if (data?.role) {
+    //     localStorage.setItem("role", data?.role);
+    //     // refresh the page
+    //     setTimeout(() => {
+    //       window.location.reload();
+    //     }, 3000);
+    //   }
+      
+    // });
+
+
+
+  </script>
+</body>
+
+</html>

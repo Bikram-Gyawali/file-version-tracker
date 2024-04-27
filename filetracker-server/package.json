@@ -1,0 +1,74 @@
+{
+  "name": "v2",
+  "version": "1.0.0",
+  "description": "",
+  "engines": {
+    "node": "<=20.7.0",
+    "npm": "<=6.x"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "node dist/server.js",
+    "dev": "nodemon",
+    "build": "npm i && del-cli dist && tsc && cp newrelic.js dist",
+    "build:dev": "yarn install && del-cli dist && tsc && cp newrelic.js dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "interview",
+    "nodejs",
+    "reactjs",
+    "file handling",
+    "crud",
+    "notifications",
+    "login",
+    "registration"
+  ],
+  "author": "bikram",
+  "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/cors": "^2.8.12",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.13",
+    "@types/lodash": "^4.14.182",
+    "@types/morgan": "^1.9.4",
+    "@types/nodemailer": "^6.4.9",
+    "@types/nodemon": "^1.19.2",
+    "del-cli": "^5.0.0",
+    "dotenv": "^16.0.1",
+    "eslint": "^8.20.0",
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@types/multer": "^1.4.11",
+    "axios": "^1.6.8",
+    "bcrypt": "^5.1.1",
+    "cloudinary": "^1.41.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "express-jwt": "^8.4.1",
+    "firebase": "^9.13.0",
+    "firebase-admin": "^11.0.1",
+    "helmet": "^7.1.0",
+    "http-status-codes": "^2.2.0",
+    "joi": "^17.6.0",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
+    "mongodb": "^5.6.0",
+    "mongoose": "^6.4.6",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.5",
+    "winston": "^3.9.0"
+  }
+}
