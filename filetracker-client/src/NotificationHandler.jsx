@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
-import * as firebase from "firebase/app";
-import "firebase/messaging";
+import firebase from "firebase/compat/app";
+import "firebase/compat/messaging";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -20,12 +22,13 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
+firebase.initializeApp(firebaseConfig);
+
 // Initialize Firebase app if not already initialized
 if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-  }
+  firebase.initializeApp(firebaseConfig);
+}
 
-// firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
 
 const NotificationHandler = () => {
@@ -42,12 +45,17 @@ const NotificationHandler = () => {
         }, 3000);
       }
 
-      //   display a toast notification
+      // display a toast notification
       const toastMessage = `${payload.notification.title}: ${payload.notification.body}`;
-
-      const toast = document.createElement("div");
-      toast.textContent = toastMessage;
-      //   toast.classList.add("toast");
+      toast(toastMessage, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     };
 
     messaging.onMessage(handleNotification);
@@ -57,7 +65,7 @@ const NotificationHandler = () => {
     };
   }, []);
 
-  return null;
+  return <ToastContainer />;
 };
 
 export default NotificationHandler;

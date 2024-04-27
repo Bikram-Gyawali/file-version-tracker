@@ -6,12 +6,14 @@ import HomePage from "./Pages/Dashboard/HomePage";
 import Folders from "./Pages/Folders/Folders";
 import Files from "./Pages/Files/File";
 import FileVersion from "./Pages/FileVersions/FileVersion";
+import NotificationHandler from "./NotificationHandler";
 function App() {
  
   const userRole = localStorage.getItem("role");
 
   return (
     <div>
+      <NotificationHandler />
       <Routes>
         {/* <Route element={<ProtectedRoute />}> */}
         {userRole === "admin" && <Route path="/home" element={<HomePage />} />}
