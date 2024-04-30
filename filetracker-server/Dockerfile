@@ -23,4 +23,6 @@ COPY . .
 # EXPOSE 5007
 
 # Load environment variables from .env file and run the server with npm run dev
-CMD ["sh", "-c", "cp .env && npm run dev"]
+# CMD ["sh", "-c", "cp .env && npm run dev"]
+
+CMD ["npm", "run", "dev"]

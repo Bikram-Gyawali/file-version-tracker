@@ -1,0 +1,25 @@
+version: '3'
+services:
+  filetracker-db:
+    container_name: filetracker-db
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - filetracker-data:/data/db
+
+  filetracker-cms:
+    container_name: filetracker-cms
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5007:5007"
+    depends_on:
+      - filetracker-db
+    env_file: .env
+    volumes:
+      - ./src:/usr/src/app/src
+
+volumes:
+  filetracker-data:

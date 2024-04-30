@@ -6,7 +6,7 @@ import helmet from "helmet";
 import { initializeFirebaseAdmin } from "./config/firebase";
 
 const app = express();
-app.use(cors({ origin: "*" }));
+app.use(cors());
 app.use(express.json());
 app.use(helmet());
 

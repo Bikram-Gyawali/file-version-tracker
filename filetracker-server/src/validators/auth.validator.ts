@@ -9,7 +9,7 @@ const registrationSchema = Joi.object({
     role: Joi.string().required().label("Role"),
     device_id: Joi.string().required().label("Device Id"),
     name: Joi.string().required().label("Name"),
-});
+}); 
 
 /**
  * Validate create user request.

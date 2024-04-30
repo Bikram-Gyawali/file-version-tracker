@@ -8,6 +8,7 @@ import { ObjectId } from "mongodb";
 import { FileVersion } from "../models/FileVersion";
 import logger from "../logging/logger";
 import axios from "axios";
+import { sendNotification } from "../services/notification.service";
 
 /**
  * Creates a file files item using the provided request data and saves it to the database.
@@ -61,6 +62,17 @@ export const createFile = async (
     await fileVersion.save();
 
     await files.save();
+
+    const userDeviceId = await User.findOne({ _id: user as string }).select(
+      "device_id"
+    );
+
+    // sendNotification(
+    //   "File created",
+    //   "File created",
+    //   `File ${title} created successfully`,
+    //   userDeviceId?.device_id
+    // );
 
     return res
       .status(201)

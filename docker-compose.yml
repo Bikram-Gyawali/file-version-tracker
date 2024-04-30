@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  filetracker-client:
+    container_name: filetracker-client
+    build:
+      context: filetracker-client
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - .env:/app/.env
+
+  filetracker-server:
+    container_name: filetracker-server
+    build:
+      context: filetracker-server
+      dockerfile: Dockerfile
+    ports:
+      - "5007:5007"
+    env_file: .env
+    volumes:
+      - ./src:/usr/src/app/src
+
+volumes:
+  filetracker-data:

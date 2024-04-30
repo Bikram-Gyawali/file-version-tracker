@@ -11,8 +11,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "node dist/server.js",
     "dev": "nodemon",
-    "build": "npm i && del-cli dist && tsc && cp newrelic.js dist",
-    "build:dev": "yarn install && del-cli dist && tsc && cp newrelic.js dist"
+    "build": "npm i && del-cli dist && tsc && cp dist",
+    "build:dev": "yarn install && del-cli dist && tsc && cp dist"
   },
   "repository": {
     "type": "git",
